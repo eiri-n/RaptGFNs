@@ -1,0 +1,16 @@
+{"time":"2025-06-05T20:47:50.231770732+09:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/home/matsumoto/dna_aptamer_mogfn/wandb/run-20250605_204750-mvkv52bp/logs/debug-core.log"}
+{"time":"2025-06-05T20:47:50.559403716+09:00","level":"INFO","msg":"stream: created new stream","id":"mvkv52bp"}
+{"time":"2025-06-05T20:47:50.559486952+09:00","level":"INFO","msg":"stream: started","id":"mvkv52bp"}
+{"time":"2025-06-05T20:47:50.55963624+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T20:47:50.559754481+09:00","level":"INFO","msg":"sender: started","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T20:47:50.559941244+09:00","level":"INFO","msg":"handler: started","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T20:47:50.835073068+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-05T21:08:14.842266168+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-05T21:08:14.842372315+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-05T21:08:15.575619754+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-05T21:08:15.844761717+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 1984-1999, summary, console lines 133-136","runtime_seconds":0.268912361}],"total_operations":1}}
+{"time":"2025-06-05T21:08:15.909736455+09:00","level":"INFO","msg":"stream: closing","id":"mvkv52bp"}
+{"time":"2025-06-05T21:08:15.909772671+09:00","level":"INFO","msg":"handler: closed","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T21:08:15.90979094+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T21:08:15.90991279+09:00","level":"INFO","msg":"sender: closed","stream_id":"mvkv52bp"}
+{"time":"2025-06-05T21:08:15.909988751+09:00","level":"INFO","msg":"stream: closed","id":"mvkv52bp"}

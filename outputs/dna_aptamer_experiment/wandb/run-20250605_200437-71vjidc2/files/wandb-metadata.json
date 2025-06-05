@@ -1,0 +1,68 @@
+{
+  "os": "Linux-6.2.0-36-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-06-05T11:04:37.916700Z",
+  "args": [
+    "--config-name=main",
+    "hydra.job.chdir=True",
+    "algorithm.train_steps=100",
+    "algorithm.batch_size=8",
+    "algorithm.eval_freq=20"
+  ],
+  "program": "/home/matsumoto/dna_aptamer_mogfn/main.py",
+  "email": "20aj119@gmail.com",
+  "root": "/home/matsumoto/dna_aptamer_mogfn/outputs/dna_aptamer_experiment",
+  "host": "hamadalab-AMEDLEAP-tris",
+  "executable": "/home/matsumoto/anaconda3/envs/dna_aptamer_test/bin/python",
+  "cpu_count": 32,
+  "cpu_count_logical": 64,
+  "gpu": "NVIDIA RTX 6000 Ada Generation",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "965895782400",
+      "used": "372042584064"
+    }
+  },
+  "memory": {
+    "total": "540708216832"
+  },
+  "cpu": {
+    "count": 32,
+    "countLogical": 64
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX 6000 Ada Generation",
+      "memoryTotal": "51527024640",
+      "cudaCores": 18176,
+      "architecture": "Ada",
+      "uuid": "GPU-e49a379e-9223-11d4-7707-d048af47ab61"
+    },
+    {
+      "name": "NVIDIA RTX 6000 Ada Generation",
+      "memoryTotal": "51527024640",
+      "cudaCores": 18176,
+      "architecture": "Ada",
+      "uuid": "GPU-8ca46ff5-1428-4dcc-3956-7ff1ea30d107"
+    },
+    {
+      "name": "NVIDIA RTX 6000 Ada Generation",
+      "memoryTotal": "51527024640",
+      "cudaCores": 18176,
+      "architecture": "Ada",
+      "uuid": "GPU-cb0bdc92-3edb-eb3c-bd8b-f20402eec4aa"
+    },
+    {
+      "name": "NVIDIA RTX 6000 Ada Generation",
+      "memoryTotal": "51527024640",
+      "cudaCores": 18176,
+      "architecture": "Ada",
+      "uuid": "GPU-02e6bd37-e5a9-6391-b42e-a4417ff1564e"
+    }
+  ],
+  "slurm": {
+    "root": "/opt/slurm/22.05.2"
+  },
+  "cudaVersion": "12.2"
+}

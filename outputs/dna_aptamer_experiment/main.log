@@ -1,0 +1,145 @@
+[2025-06-05 19:52:35,008][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:52:35,009][root][INFO] - タスクを初期化中...
+[2025-06-05 19:52:35,014][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:52:35,925][root][INFO] - 最適化を開始中...
+[2025-06-05 19:52:35,937][root][ERROR] - エラーが発生しました: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 128, in optimize
+    loss, r = self.train_step(task, self.batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 176, in train_step
+    cond_var, (prefs, beta) = self._get_condition_var(train=True, bs=batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 208, in _get_condition_var
+    beta = thermometer(beta_raw * self.beta_max, self.therm_n_bins, 0, self.beta_max)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn_utils.py", line 72, in thermometer
+    return (v[..., None] - bins.reshape((1,) * v.ndim + (-1,))).clamp(0, gap.item()) / gap
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+[2025-06-05 19:53:35,679][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:53:35,680][root][INFO] - タスクを初期化中...
+[2025-06-05 19:53:35,682][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:53:36,579][root][INFO] - 最適化を開始中...
+[2025-06-05 19:53:36,849][root][ERROR] - エラーが発生しました: The size of tensor a (128) must match the size of tensor b (62) at non-singleton dimension 0
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 128, in optimize
+    loss, r = self.train_step(task, self.batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 177, in train_step
+    states, logprobs = self.sample(batch_size, cond_var)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 252, in sample
+    logits = self.model(x, cond_var, mask, lens=lens)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/conditional_transformer.py", line 84, in forward
+    x = self.pos(x)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/conditional_transformer.py", line 138, in forward
+    x = x + self.pe[:x.size(0), :]
+RuntimeError: The size of tensor a (128) must match the size of tensor b (62) at non-singleton dimension 0
+[2025-06-05 19:54:21,254][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:54:21,255][root][INFO] - タスクを初期化中...
+[2025-06-05 19:54:21,257][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:54:22,152][root][INFO] - 最適化を開始中...
+[2025-06-05 19:54:22,466][root][ERROR] - エラーが発生しました: mat1 and mat2 shapes cannot be multiplied (128x150 and 3x64)
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 128, in optimize
+    loss, r = self.train_step(task, self.batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 177, in train_step
+    states, logprobs = self.sample(batch_size, cond_var)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 252, in sample
+    logits = self.model(x, cond_var, mask, lens=lens)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/conditional_transformer.py", line 104, in forward
+    cond_var = self.cond_embed(cond)  # [batch_size, num_hid]
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (128x150 and 3x64)
+[2025-06-05 19:55:48,133][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:55:48,134][root][INFO] - タスクを初期化中...
+[2025-06-05 19:55:48,136][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:55:49,057][root][INFO] - 最適化を開始中...
+[2025-06-05 19:55:50,058][root][ERROR] - エラーが発生しました: The size of tensor a (50) must match the size of tensor b (128) at non-singleton dimension 1
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 131, in optimize
+    loss, r = self.train_step(task, self.batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 188, in train_step
+    loss = (logprobs - beta * log_r).pow(2).mean()
+RuntimeError: The size of tensor a (50) must match the size of tensor b (128) at non-singleton dimension 1
+[2025-06-05 19:56:36,718][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:56:36,719][root][INFO] - タスクを初期化中...
+[2025-06-05 19:56:36,721][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:56:37,624][root][INFO] - 最適化を開始中...
+[2025-06-05 19:56:38,810][root][ERROR] - エラーが発生しました: one of the variables needed for gradient computation has been modified by an inplace operation: [CUDABoolType [128]] is at version 128; expected version 127 instead. Hint: enable anomaly detection to find the operation that failed to compute its gradient, with torch.autograd.set_detect_anomaly(True).
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 131, in optimize
+    loss, r = self.train_step(task, self.batch_size)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 189, in train_step
+    loss.backward()
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: one of the variables needed for gradient computation has been modified by an inplace operation: [CUDABoolType [128]] is at version 128; expected version 127 instead. Hint: enable anomaly detection to find the operation that failed to compute its gradient, with torch.autograd.set_detect_anomaly(True).
+[2025-06-05 19:58:00,804][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:58:00,805][root][INFO] - タスクを初期化中...
+[2025-06-05 19:58:00,807][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:58:01,716][root][INFO] - 最適化を開始中...
+[2025-06-05 19:58:02,617][root][ERROR] - エラーが発生しました: You must call wandb.init() before wandb.log()
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 159, in optimize
+    self.log({
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/base.py", line 34, in log
+    wandb.log(metrics, commit=commit)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/wandb/sdk/lib/preinit.py", line 36, in preinit_wrapper
+    raise wandb.Error(f"You must call wandb.init() before {name}()")
+wandb.errors.errors.Error: You must call wandb.init() before wandb.log()
+[2025-06-05 19:58:26,642][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:58:26,643][root][INFO] - タスクを初期化中...
+[2025-06-05 19:58:26,645][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:58:27,531][root][INFO] - 最適化を開始中...
+[2025-06-05 19:58:28,413][root][ERROR] - エラーが発生しました: You must call wandb.init() before wandb.log()
+Traceback (most recent call last):
+  File "/home/matsumoto/dna_aptamer_mogfn/main.py", line 117, in main
+    metrics = algorithm.optimize(task, init_data=None)
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/mogfn.py", line 159, in optimize
+    self.log({
+  File "/home/matsumoto/dna_aptamer_mogfn/src/dna_aptamer_mogfn/algorithms/base.py", line 34, in log
+    wandb.log(metrics, commit=commit)
+  File "/home/matsumoto/anaconda3/envs/dna_aptamer_test/lib/python3.10/site-packages/wandb/sdk/lib/preinit.py", line 36, in preinit_wrapper
+    raise wandb.Error(f"You must call wandb.init() before {name}()")
+wandb.errors.errors.Error: You must call wandb.init() before wandb.log()
+[2025-06-05 19:59:31,286][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 19:59:31,286][root][INFO] - タスクを初期化中...
+[2025-06-05 19:59:31,289][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 19:59:32,193][root][INFO] - 最適化を開始中...
+[2025-06-05 20:04:38,772][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 20:04:38,773][root][INFO] - タスクを初期化中...
+[2025-06-05 20:04:38,778][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 20:04:39,761][root][INFO] - 最適化を開始中...
+[2025-06-05 20:17:50,313][root][INFO] - トークナイザーを初期化中...
+[2025-06-05 20:17:50,315][root][INFO] - タスクを初期化中...
+[2025-06-05 20:17:50,321][root][INFO] - アルゴリズムを初期化中...
+[2025-06-05 20:17:51,850][root][INFO] - 最適化を開始中...

@@ -1,0 +1,60 @@
+_target_: dna_aptamer_mogfn.algorithms.mogfn.MOGFN
+_recursive_: false
+
+# 訓練設定
+train_steps: 1000
+batch_size: 128
+pi_lr: 0.0001
+z_lr: 0.001
+wd: 0.0001
+
+# GFN設定
+max_len: ${task.max_len}
+min_len: ${task.min_len}
+random_action_prob: 0.01
+sampling_temp: 1.0
+gen_clip: 10
+
+# 報酬設定
+reward_min: 1e-80
+reward_max: 100
+reward_type: convex
+
+# 条件付け設定
+beta_use_therm: true
+pref_use_therm: true
+beta_cond: true
+pref_cond: true
+beta_scale: 1
+beta_shape: 32
+pref_alpha: 1.0
+beta_max: 32
+therm_n_bins: 50
+sample_beta: 4
+
+# 評価設定
+eval_metrics: ["hypervolume", "r2", "hsri"]
+eval_freq: 100
+num_samples: 256
+k: 10
+simplex_bins: 10
+use_eval_pref: false
+num_pareto_points: 500
+pareto_freq: 200
+unnormalize_rewards: false
+
+# 状態保存
+state_save_path: "./outputs/mogfn_state.pkl.gz"
+
+# モデル設定
+model:
+  _target_: dna_aptamer_mogfn.algorithms.conditional_transformer.CondGFNTransformer
+  max_len: ${task.max_len}
+  vocab_size: 10  # aptamerトークナイザーの語彙サイズ
+  num_actions: 5  # A, C, T, G + stop
+  num_hid: 64
+  num_layers: 3
+  num_head: 8
+  bidirectional: false
+  dropout: 0.0
+  batch_size: 128

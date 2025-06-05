@@ -1,0 +1,2 @@
+[console_scripts]
+dna-aptamer-mogfn = dna_aptamer_mogfn.main:main

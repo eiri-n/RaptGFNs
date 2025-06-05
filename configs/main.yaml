@@ -1,0 +1,26 @@
+defaults:
+  - task: simple_length_gc
+  - algorithm: mogfn
+  - tokenizer: aptamer
+
+seed: null
+trial_id: 0
+project_name: dna_aptamer_mogfn
+version: v0.1.0
+wandb_mode: online  # disabled, online, offline
+
+# ディレクトリ設定
+data_dir: ./outputs
+exp_name: dna_aptamer_experiment
+group_name: aptamer_generation
+exp_tags: []
+job_name: null
+timestamp: ${now:%Y-%m-%d_%H-%M-%S}
+log_dir: ${data_dir}/${exp_name}
+
+hydra:
+  run:
+    dir: ${log_dir}
+  sweep:
+    dir: ${log_dir}
+    subdir: .

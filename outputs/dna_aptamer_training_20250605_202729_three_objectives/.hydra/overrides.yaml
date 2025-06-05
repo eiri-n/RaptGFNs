@@ -1,0 +1,10 @@
+- task=simple_three_objectives
+- algorithm=mogfn
+- tokenizer=aptamer
+- exp_name=dna_aptamer_training_20250605_202729_three_objectives
+- seed=42
+- wandb_mode=online
+- algorithm.train_steps=3000
+- algorithm.batch_size=64
+- algorithm.eval_freq=200
+- algorithm.pareto_freq=400
