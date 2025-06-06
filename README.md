@@ -158,6 +158,141 @@ objectives:
 
 MIT License - 元のMulti-Objective GFlowNetsプロジェクトのライセンスに従います。
 
+## コードの概略説明とコードマップ
+
+### プロジェクト構造
+
+```
+src/raptgfn/
+├── algorithms/           # GFlowNetsアルゴリズムの実装
+│   ├── mogfn.py         # Multi-Objective GFlowNet メインアルゴリズム
+│   ├── conditional_transformer.py  # 条件付きTransformerニューラルネット
+│   ├── mogfn_utils.py   # GFlowNet用ユーティリティ関数
+│   └── base.py          # アルゴリズム基底クラス
+├── tasks/               # タスクと目的関数の実装
+│   ├── simple_dna.py    # DNAアプタマー目的関数（メイン実装）
+│   └── base.py          # タスク基底クラス
+├── utils/               # ユーティリティとトークナイザー
+│   └── __init__.py      # DNAアプタマー用トークナイザーとヘルパー関数
+└── metrics.py           # 評価メトリクス（ハイパーボリューム等）
+```
+
+### 1. 目的関数の実装 (`src/raptgfn/tasks/simple_dna.py`)
+
+**SimpleDNATask**クラスが全ての目的関数を実装：
+
+- **`_compute_length_score()`**: 配列長の最適化
+  - 理想的な長さ（ideal_length）への近さを評価
+  - スコア = 1.0 / (1.0 + |実際の長さ - 理想長さ| / 理想長さ)
+
+- **`_compute_gc_content_score()`**: GC含有量の最適化
+  - 理想的なGC比率（ideal_gc_content、デフォルト50%）への近さを評価
+  - スコア = 1.0 / (1.0 + |実際のGC% - 理想GC%| × 4)
+
+- **`_compute_base_balance_score()`**: 塩基バランスの評価
+  - A, T, G, Cの均等度を評価（理想的には各25%）
+  - 分散ベースの評価でバランスの良さを測定
+
+- **`_compute_dinucleotide_diversity_score()`**: ジヌクレオチド多様性
+  - 2塩基の組み合わせの多様性を評価
+  - 最大16種類の可能な組み合わせに対する比率
+
+- **`_compute_complexity_score()`**: 配列複雑さ
+  - 繰り返しパターンの少なさを評価
+  - より複雑な配列ほど高スコア
+
+### 2. GFlowNetsの設計 (`src/raptgfn/algorithms/mogfn.py`)
+
+**MOGFN**クラスがMulti-Objective GFlowNetを実装：
+
+#### 主要コンポーネント：
+- **パレート条件付けアプローチ**: `_get_condition_var()`
+  - βパラメータ（温度）とプリファレンスベクトルで多目的を制御
+  - Thermometer encoding（温度計エンコーディング）で細かい制御
+
+- **サンプリング機能**: `sample()`
+  - 条件付きポリシーから配列を生成
+  - Causal sampling（因果的サンプリング）で逐次配列生成
+
+- **報酬処理**: `process_reward()`
+  - 複数目的スコアを単一報酬に変換
+  - プリファレンスに基づく重み付け結合
+
+- **訓練ループ**: `train_step()`
+  - GFlowNet損失の計算と最適化
+  - パーティション関数Zの学習
+
+#### 特徴的な実装：
+- **Thermometer encoding**: 連続値を離散ビンに分割して細かい制御
+- **パレートフロンティア評価**: 定期的な多目的最適化性能評価
+- **適応的サンプリング**: 訓練進行に応じたサンプリング戦略
+
+### 3. ニューラルネットワーク (`src/raptgfn/algorithms/conditional_transformer.py`)
+
+**CondGFNTransformer**クラスが条件付きTransformerを実装：
+
+#### アーキテクチャ：
+- **入力**: DNA配列トークン + 条件ベクトル（β + プリファレンス）
+- **エンコーダ**: 標準的なTransformer Encoder
+  - 位置エンコーディング（PositionalEncoding）
+  - Multi-head attention
+  - Causal mask（因果的マスク）で逐次生成を制御
+
+- **条件付け機構**:
+  - `cond_embed`: 条件ベクトルをTransformer次元に埋め込み
+  - `Z_mod`: パーティション関数Z用の専用層
+  - 配列表現と条件表現をconcatenateして最終出力
+
+#### 重要な設計選択：
+- **Batch-first形式**: 効率的なバッチ処理
+- **動的条件次元**: 目的関数数に応じて条件ベクトルサイズを調整
+- **分離された最適化**: モデルパラメータとZパラメータを別々に最適化
+
+### 4. 評価とメトリクス (`src/raptgfn/metrics.py`)
+
+**多目的最適化評価**:
+- **ハイパーボリューム**: パレートフロンティアの質を測定
+- **R2指標**: プリファレンスベースの評価
+- **多様性メトリクス**: 解の分散度を評価
+- **PyMOO統合**: 高度な多目的最適化メトリクス
+
+### 5. トークナイザーとユーティリティ (`src/raptgfn/utils/`)
+
+**AptamerTokenizer**:
+- DNA塩基（A, T, C, G）専用のトークナイザー
+- 特殊トークン（[CLS], [SEP], [PAD]等）のサポート
+- 効率的なエンコード/デコード処理
+
+**ヘルパー関数**:
+- `str_to_tokens()`: 文字列→トークン変換
+- `tokens_to_str()`: トークン→文字列変換
+- `validate_dna_sequence()`: DNA配列の妥当性チェック
+- `gc_content()`: GC含量計算
+
+### 実行フロー
+
+1. **初期化** (`main.py`)
+   - Hydra設定の読み込み
+   - トークナイザー、タスク、アルゴリズムの初期化
+
+2. **訓練ループ** (`MOGFN.optimize()`)
+   - バッチサンプリング
+   - 目的関数評価
+   - GFlowNet損失計算
+   - ニューラルネット更新
+
+3. **評価** (`MOGFN.evaluation()`)
+   - サンプル生成
+   - パレートフロンティア計算
+   - メトリクス評価
+
+### カスタマイズポイント
+
+- **新しい目的関数**: `SimpleDNATask`に`_compute_*_score()`メソッドを追加
+- **ネットワーク構造**: `CondGFNTransformer`の層数、ヘッド数等を調整
+- **サンプリング戦略**: `MOGFN`の条件付け方法を変更
+- **評価メトリクス**: `metrics.py`に新しい評価関数を追加
+
 ## 参考文献
 
 ```bibtex
