@@ -1,3 +1,0 @@
-- algorithm.train_steps=100
-- algorithm.batch_size=8
-- algorithm.eval_freq=20
