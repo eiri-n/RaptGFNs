@@ -1,15 +1,12 @@
 task:
-  _target_: dna_aptamer_mogfn.tasks.simple_dna.SimpleDNATask
+  _target_: raptgfn.tasks.simple_dna.SimpleDNATask
   objectives:
   - length
   - gc_content
-  - complexity
   eval_pref:
-  - 0.4
-  - 0.3
-  - 0.3
+  - 0.5
+  - 0.5
   score_max:
-  - 1.0
   - 1.0
   - 1.0
   regex_list: null
@@ -24,10 +21,10 @@ task:
   allow_len_change: true
   max_score_per_dim: 16
 algorithm:
-  _target_: dna_aptamer_mogfn.algorithms.mogfn.MOGFN
+  _target_: raptgfn.algorithms.mogfn.MOGFN
   _recursive_: false
-  train_steps: 3000
-  batch_size: 64
+  train_steps: 10
+  batch_size: 128
   pi_lr: 0.0001
   z_lr: 0.001
   wd: 0.0001
@@ -53,17 +50,17 @@ algorithm:
   - hypervolume
   - r2
   - hsri
-  eval_freq: 200
+  eval_freq: 5
   num_samples: 256
   k: 10
   simplex_bins: 10
   use_eval_pref: false
   num_pareto_points: 500
-  pareto_freq: 400
+  pareto_freq: 200
   unnormalize_rewards: false
   state_save_path: ./outputs/mogfn_state.pkl.gz
   model:
-    _target_: dna_aptamer_mogfn.algorithms.conditional_transformer.CondGFNTransformer
+    _target_: raptgfn.algorithms.conditional_transformer.CondGFNTransformer
     max_len: 60
     vocab_size: 10
     num_actions: 5
@@ -74,16 +71,16 @@ algorithm:
     dropout: 0.0
     batch_size: 128
 tokenizer:
-  _target_: dna_aptamer_mogfn.utils.AptamerTokenizer
-seed: 42
+  _target_: raptgfn.utils.AptamerTokenizer
+seed: 17368
 trial_id: 0
-project_name: dna_aptamer_mogfn
+project_name: raptgfn
 version: v0.1.0
-wandb_mode: online
+wandb_mode: disabled
 data_dir: ./outputs
-exp_name: dna_aptamer_training_20250605_202729_three_objectives
+exp_name: dna_aptamer_experiment
 group_name: aptamer_generation
 exp_tags: []
-job_name: dna_aptamer_training_20250605_202729_three_objectives
-timestamp: 2025-06-05_21-08-20
-log_dir: ./outputs/dna_aptamer_training_20250605_202729_three_objectives
+job_name: aptamer_mogfn_0
+timestamp: 2025-06-06_14-16-32
+log_dir: ./outputs/dna_aptamer_experiment

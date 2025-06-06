@@ -9,7 +9,7 @@ with open(os.path.join(_here, "README.md"), encoding="utf-8") as f:
 desc = "DNAアプタマー生成のためのMulti-Objective GFlowNets" 
 
 setup(
-    name="dna_aptamer_mogfn",
+    name="raptgfn",
     version="0.1.0",
     description=desc,
     long_description=long_description,
@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'dna-aptamer-mogfn=dna_aptamer_mogfn.main:main',
+            'raptgfn=raptgfn.main:main',
         ],
     },
 )

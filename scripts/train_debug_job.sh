@@ -9,7 +9,7 @@ set -e
 # 設定（デバッグ用に軽量化）
 # =============================================================================
 
-PROJECT_DIR="/home/matsumoto/dna_aptamer_mogfn"
+PROJECT_DIR="/home/matsumoto/raptgfn"
 CONDA_ENV="dna_aptamer_test"
 
 EXPERIMENT_NAME="debug_test_$(date +%Y%m%d_%H%M%S)"
@@ -171,7 +171,7 @@ echo "モデルパラメータ数推定:"
 python -c "
 import sys
 sys.path.append('src')
-from dna_aptamer_mogfn.algorithms.conditional_transformer import CondGFNTransformer
+from raptgfn.algorithms.conditional_transformer import CondGFNTransformer
 model = CondGFNTransformer(vocab_size=5, pad_token=0, max_len=50)
 params = sum(p.numel() for p in model.parameters())
 print(f'総パラメータ数: {params:,}')

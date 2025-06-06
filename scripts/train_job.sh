@@ -9,7 +9,7 @@ set -e
 # =============================================================================
 
 # プロジェクト設定
-PROJECT_DIR="/home/matsumoto/dna_aptamer_mogfn"
+PROJECT_DIR="/home/matsumoto/raptgfn"
 CONDA_ENV="dna_aptamer_test"  # 必要に応じて変更
 
 # 実験設定
@@ -120,5 +120,5 @@ echo "生成されたファイル:"
 find "outputs" -name "*${EXPERIMENT_NAME#dna_aptamer_training_}*" -type f | sort
 
 echo ""
-echo "WandBプロジェクト: dna_aptamer_mogfn"
+echo "WandBプロジェクト: raptgfn"
 echo "すべての学習が正常に完了しました。"

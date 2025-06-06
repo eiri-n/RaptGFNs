@@ -11,14 +11,14 @@ import math
 from torch.distributions import Categorical
 from tqdm import tqdm
 
-from dna_aptamer_mogfn.algorithms.base import BaseAlgorithm
-from dna_aptamer_mogfn.algorithms.conditional_transformer import CondGFNTransformer
-from dna_aptamer_mogfn.algorithms.mogfn_utils import (
+from raptgfn.algorithms.base import BaseAlgorithm
+from raptgfn.algorithms.conditional_transformer import CondGFNTransformer
+from raptgfn.algorithms.mogfn_utils import (
     mean_pairwise_distances, generate_simplex, thermometer, 
     plot_pareto, pareto_frontier, compute_hypervolume
 )
-from dna_aptamer_mogfn.utils import str_to_tokens, tokens_to_str
-from dna_aptamer_mogfn.metrics import get_all_metrics
+from raptgfn.utils import str_to_tokens, tokens_to_str
+from raptgfn.metrics import get_all_metrics
 
 
 class MOGFN(BaseAlgorithm):

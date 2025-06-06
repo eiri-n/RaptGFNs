@@ -14,7 +14,7 @@ except ImportError:
     except ImportError:
         PYMOO_AVAILABLE = False
 
-from dna_aptamer_mogfn.algorithms.mogfn_utils import compute_hypervolume
+from raptgfn.algorithms.mogfn_utils import compute_hypervolume
 
 
 def get_all_metrics(solutions, eval_metrics, **kwargs):

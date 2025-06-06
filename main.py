@@ -14,7 +14,7 @@ import torch
 import numpy as np
 from omegaconf import OmegaConf, DictConfig
 
-from src.dna_aptamer_mogfn.utils import flatten_config
+from src.raptgfn.utils import flatten_config
 
 try:
     import wandb

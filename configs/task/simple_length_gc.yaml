@@ -1,5 +1,5 @@
 # 簡単なDNAタスク設定: 配列長 + GC含有量
-_target_: dna_aptamer_mogfn.tasks.simple_dna.SimpleDNATask
+_target_: raptgfn.tasks.simple_dna.SimpleDNATask
 objectives:
   - length
   - gc_content

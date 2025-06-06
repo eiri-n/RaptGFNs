@@ -28,7 +28,7 @@ Multi-Objective Generative Flow Networks (MOGFNs)を使用してDNAアプタマ�
 
 ```bash
 git clone <repository-url>
-cd dna_aptamer_mogfn
+cd raptgfn
 pip install -e .
 ```
 

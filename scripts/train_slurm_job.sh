@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=dna_aptamer_mogfn
+#SBATCH --job-name=raptgfn
 #SBATCH --output=outputs/slurm_%j.out
 #SBATCH --error=outputs/slurm_%j.err
 #SBATCH --time=24:00:00
@@ -34,7 +34,7 @@ export CUDA_VISIBLE_DEVICES=0
 # =============================================================================
 
 # プロジェクト設定
-PROJECT_DIR="/home/matsumoto/dna_aptamer_mogfn"
+PROJECT_DIR="/home/matsumoto/raptgfn"
 CONDA_ENV="dna_aptamer_test"
 
 # 実験設定

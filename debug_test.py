@@ -6,9 +6,9 @@
 import torch
 import hydra
 from omegaconf import DictConfig
-from src.dna_aptamer_mogfn.utils import AptamerTokenizer
-from src.dna_aptamer_mogfn.tasks.simple_dna import SimpleDNATask
-from src.dna_aptamer_mogfn.algorithms.mogfn import MOGFN
+from src.raptgfn.utils import AptamerTokenizer
+from src.raptgfn.tasks.simple_dna import SimpleDNATask
+from src.raptgfn.algorithms.mogfn import MOGFN
 
 torch.autograd.set_detect_anomaly(True)
 
@@ -63,7 +63,7 @@ def debug_test():
         'unnormalize_rewards': False,
         'state_save_path': './outputs/mogfn_state.pkl.gz',
         'model': {
-            '_target_': 'dna_aptamer_mogfn.algorithms.conditional_transformer.CondGFNTransformer',
+            '_target_': 'raptgfn.algorithms.conditional_transformer.CondGFNTransformer',
             'max_len': 60,
             'vocab_size': 10,
             'num_actions': 5,

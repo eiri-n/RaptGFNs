@@ -5,7 +5,7 @@ defaults:
 
 seed: null
 trial_id: 0
-project_name: dna_aptamer_mogfn
+project_name: raptgfn
 version: v0.1.0
 wandb_mode: online  # disabled, online, offline
 

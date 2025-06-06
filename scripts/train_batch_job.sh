@@ -10,7 +10,7 @@ set -e
 # =============================================================================
 
 # プロジェクト設定
-PROJECT_DIR="/home/matsumoto/dna_aptamer_mogfn"
+PROJECT_DIR="/home/matsumoto/raptgfn"
 CONDA_ENV="dna_aptamer_test"
 
 # 実験設定

@@ -6,7 +6,7 @@ NUPACKを使わない簡単なDNAアプタマー生成タスク
 import numpy as np
 from omegaconf import ListConfig
 
-from dna_aptamer_mogfn.tasks.base import BaseTask
+from raptgfn.tasks.base import BaseTask
 
 
 class SimpleDNATask(BaseTask):

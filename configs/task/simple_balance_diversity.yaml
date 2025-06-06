@@ -1,5 +1,5 @@
 # 簡単なDNAタスク設定: 塩基バランス + 多様性
-_target_: dna_aptamer_mogfn.tasks.simple_dna.SimpleDNATask
+_target_: raptgfn.tasks.simple_dna.SimpleDNATask
 objectives:
   - base_balance
   - dinucleotide_diversity

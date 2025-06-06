@@ -1,1 +1,1 @@
-_target_: dna_aptamer_mogfn.utils.AptamerTokenizer
+_target_: raptgfn.utils.AptamerTokenizer

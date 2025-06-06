@@ -1,4 +1,4 @@
-_target_: dna_aptamer_mogfn.algorithms.mogfn.MOGFN
+_target_: raptgfn.algorithms.mogfn.MOGFN
 _recursive_: false
 
 # 訓練設定
@@ -48,7 +48,7 @@ state_save_path: "./outputs/mogfn_state.pkl.gz"
 
 # モデル設定
 model:
-  _target_: dna_aptamer_mogfn.algorithms.conditional_transformer.CondGFNTransformer
+  _target_: raptgfn.algorithms.conditional_transformer.CondGFNTransformer
   max_len: ${task.max_len}
   vocab_size: 10  # aptamerトークナイザーの語彙サイズ
   num_actions: 5  # A, C, T, G + stop
